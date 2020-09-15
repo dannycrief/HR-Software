@@ -1,6 +1,6 @@
 <template>
   <div class="navigation-bar">
-    <b-navbar toggleable="lg" type="light" variant="light" print="true">
+    <b-navbar toggleable="lg" type="light" variant="light" print="true" fixed="top">
       <b-navbar-brand variant="primary" :to="{name: 'home'}">
         <font-awesome-icon :icon="['far', 'check-circle']" size="lg"/>
         <b>HR</b>Software

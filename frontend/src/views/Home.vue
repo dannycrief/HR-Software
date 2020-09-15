@@ -26,6 +26,35 @@
         </b-row>
       </b-container>
     </div>
+    <div class="instruction-content">
+      <b-container class="bv-example-row">
+        <b-row>
+          <b-col sm="12" md="4">
+            <span class="line">1</span>
+            <h1>Create an exam</h1>
+            <p>Create your own exam in easy way by using our platform</p>
+          </b-col>
+          <b-col sm="12" md="4">
+            <span class="line">2</span>
+            <h1>Share it</h1>
+            <p>Share your exam with a group of people that you recruit</p>
+          </b-col>
+          <b-col sm="12" md="4">
+            <span>3</span>
+            <h1>See results</h1>
+            <p>The results you will see here or we can send by email</p>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+
+    <div class="footer-content">
+      <b-container class="bv-example-row">
+        <b-row>
+          <h1>hello footer</h1>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </template>
 
@@ -55,10 +84,12 @@ export default {
 
 .bv-container-row {
   margin-top: 3.5rem;
+
   .bv-row {
     justify-content: center;
     align-items: center;
   }
+
   .left-header {
     h1 {
       color: #1e2022;
@@ -104,5 +135,72 @@ export default {
       text-decoration: none;
     }
   }
+}
+
+.instruction-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7FAFF;
+  height: 300px;
+
+  .bv-example-row {
+    .row {
+      .col-sm-12.col-md-4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        flex-direction: column;
+
+        span {
+          color: #377dff;
+          background-color: rgba(55, 125, 255, 0.1);
+          height: 3.125rem;
+          width: 3.125rem;
+          border-radius: 50%;
+          font-size: 1rem;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        span.line::after {
+          position: absolute;
+          top: 3.59375rem;
+          left: 50%;
+          height: calc(100% - 2.65625rem);
+          border-left: 0.125rem solid #e7eaf3;
+          content: "";
+        }
+
+        @media (min-width: 768px) {
+          span.line::after {
+            top: 1.5625rem;
+            width: calc(100% - 4.85rem);
+            left: calc(50% + 2.5rem);
+            height: 1.0625rem;
+            border-top: 0.125rem solid #e7eaf3;
+            border-left: none;
+          }
+        }
+
+        h1 {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.footer-content {
+  height: 300px;
+  background-color: black;
 }
 </style>
