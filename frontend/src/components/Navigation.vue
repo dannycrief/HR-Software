@@ -1,6 +1,6 @@
 <template>
   <div class="navigation-bar">
-    <b-navbar toggleable="lg" type="light" variant="light" print="true" fixed="top">
+    <b-navbar toggleable="lg" type="light" variant="light" print="true">
       <b-navbar-brand variant="primary" :to="{name: 'home'}">
         <font-awesome-icon :icon="['far', 'check-circle']" size="lg"/>
         <b>HR</b>Software
@@ -40,6 +40,9 @@
               <b-badge variant="danger" pill>Demo</b-badge>
             </b-dropdown-item-button>
             <b-dropdown-item-button>PL
+              <b-badge variant="danger" pill>Demo</b-badge>
+            </b-dropdown-item-button>
+            <b-dropdown-item-button>UA
               <b-badge variant="danger" pill>Demo</b-badge>
             </b-dropdown-item-button>
           </b-nav-item-dropdown>
