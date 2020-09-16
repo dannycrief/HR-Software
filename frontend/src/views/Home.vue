@@ -30,7 +30,7 @@
           </b-col>
         </b-row>
         <h3
-          style="text-align: center; margin-bottom: 1rem; margin-top: 1rem; font-size: 1.5rem">
+          style="text-align: center; margin-bottom: 2rem; margin-top: 2rem; font-size: 1.5rem">
           We create it using
         </h3>
         <b-row class="bv-row-icons">
@@ -71,25 +71,49 @@
       <!--  Second container starts  -->
       <b-container class="bv-container-two-row">
         <b-row>
-          <b-col sm="12" md="4">
+          <b-col sm="12" md="4"
+                 data-aos="fade-up"
+                 data-aos-offset="100"
+                 data-aos-delay="100"
+                 data-aos-duration="1000"
+                 data-aos-easing="ease-in"
+                 data-aos-mirror="true"
+                 data-aos-once="true"
+                 data-aos-anchor-placement="top-center">
             <span class="line">1</span>
             <div class="after-line-content">
               <h1>Create an exam</h1>
               <p>Create your own exam in easy way by using our platform</p>
             </div>
           </b-col>
-          <b-col sm="12" md="4">
+          <b-col sm="12" md="4"
+                 data-aos="fade-up"
+                 data-aos-offset="100"
+                 data-aos-delay="600"
+                 data-aos-duration="1000"
+                 data-aos-easing="ease-in"
+                 data-aos-mirror="true"
+                 data-aos-once="true"
+                 data-aos-anchor-placement="top-center">
             <span class="line">2</span>
             <div class="after-line-content">
               <h1>Share it</h1>
-              <p>Share your exam with a group of people that you recruit</p>
+              <p>Share your exam with a group of people that you're recruiting</p>
             </div>
           </b-col>
-          <b-col sm="12" md="4">
+          <b-col sm="12" md="4"
+                 data-aos="fade-up"
+                 data-aos-offset="10"
+                 data-aos-delay="1100"
+                 data-aos-duration="1000"
+                 data-aos-easing="ease-in"
+                 data-aos-mirror="true"
+                 data-aos-once="true"
+                 data-aos-anchor-placement="top-center">
             <span>3</span>
             <div class="after-line-content">
               <h1>See results</h1>
-              <p>The results you will see here or we can send by email</p>
+              <p>The results you can see here or we can also send by email</p>
             </div>
           </b-col>
         </b-row>
@@ -216,10 +240,17 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @media (max-width: 767px) {
   .right {
     display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-content {
+    height: calc(100vh - 80px);
+    margin-bottom: 0 !important;
   }
 }
 
@@ -355,8 +386,8 @@ export default {
         span {
           color: #377dff;
           background-color: rgba(55, 125, 255, 0.1);
-          height: 3.125rem;
-          width: 3.125rem;
+          min-height: 3.125rem;
+          min-width: 3.125rem;
           border-radius: 50%;
           font-size: 1rem;
           font-weight: bold;
@@ -368,11 +399,17 @@ export default {
 
         span.line::after {
           position: absolute;
-          top: 4rem;
+          top: 5rem;
           left: 2.4rem;
-          height: calc(100% - 2.45rem);
+          height: calc(100% - 3rem);
           border-left: 0.125rem solid #e7eaf3;
           content: "";
+          //position: absolute;
+          //top: 3.59375rem;
+          //left: 1.5625rem;
+          //height: calc(100% - 2.65625rem);
+          //border-left: 0.125rem solid #e7eaf3;
+          //content: "";
         }
 
         @media (min-width: 768px) {
