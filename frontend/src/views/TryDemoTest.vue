@@ -9,9 +9,6 @@
           <b-form-group id="input-group"
                         :label="getQuestion(1)"
                         label-for="input-1">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-1"
               v-model="form.question_1"
@@ -23,9 +20,6 @@
           <b-form-group id="input-group-2"
                         :label="getQuestion(2)"
                         label-for="input-2">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-2"
               v-model="form.question_2"
@@ -37,9 +31,6 @@
           <b-form-group id="input-group-3"
                         :label="getQuestion(3)"
                         label-for="input-3">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-3"
               v-model="form.question_3"
@@ -51,9 +42,6 @@
           <b-form-group id="input-group-4"
                         :label="getQuestion(4)"
                         label-for="input-4">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-4"
               v-model="form.question_4"
@@ -79,9 +67,6 @@
           <b-form-group id="input-group-6"
                         :label="getQuestion(6)"
                         label-for="input-6">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-6"
               v-model="form.question_6"
@@ -93,9 +78,6 @@
           <b-form-group id="input-group-7"
                         :label="getQuestion(7)"
                         label-for="input-7">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-7"
               v-model="form.question_7"
@@ -107,9 +89,6 @@
           <b-form-group id="input-group-8"
                         :label="getQuestion(8)"
                         label-for="input-8">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-8"
               v-model="form.question_8"
@@ -121,9 +100,6 @@
           <b-form-group id="input-group-9"
                         :label="getQuestion(9)"
                         label-for="input-9">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-9"
               v-model="form.question_9"
@@ -135,9 +111,6 @@
           <b-form-group id="input-group-10"
                         :label="getQuestion(10)"
                         label-for="input-10">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
             <b-form-input
               id="input-10"
               v-model="form.question_10"
