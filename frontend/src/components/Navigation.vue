@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-bar">
     <b-navbar toggleable="lg" type="light" variant="light" print="true">
-      <b-navbar-brand variant="primary" :to="{name: 'home'}">
+      <b-navbar-brand variant="primary" to="/">
         <font-awesome-icon :icon="['far', 'check-circle']" size="lg"/>
         <b>HR</b>Software
       </b-navbar-brand>

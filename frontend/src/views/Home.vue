@@ -17,10 +17,11 @@
                 Create your own tests.</p>
             </div>
             <div class="left-footer">
-              <b-button size="lg" variant="primary" class="try-free-button">Try
-                for free
+              <b-button size="lg" variant="primary" class="try-free-button"
+                        to="try-demo">
+                Try for free
               </b-button>
-              <b-button variant="link" class="link-button">Schedule a demo
+              <b-button variant="link" class="link-button">Create exam
                 <font-awesome-icon :icon="['fas', 'angle-right']" size="sm"/>
               </b-button>
             </div>
@@ -98,7 +99,8 @@
             <span class="line">2</span>
             <div class="after-line-content">
               <h1>Share it</h1>
-              <p>Share your exam with a group of people that you're recruiting</p>
+              <p>Share your exam with a group of people that you're
+                recruiting</p>
             </div>
           </b-col>
           <b-col sm="12" md="4"
