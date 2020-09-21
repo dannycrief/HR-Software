@@ -151,7 +151,6 @@ export default {
 
     getQuestion(taskNumber) {
       const currentQuestion = this.questions[this.randomArray[taskNumber - 1]];
-      // console.log(JSON.stringify(currentQuestion));
       return `${taskNumber}) ${JSON.stringify(currentQuestion.demo_question).replace(/['"]+/g, '')}`;
     },
 
@@ -183,7 +182,6 @@ export default {
       Object.entries(this.form).forEach(([testKey, testValue]) => {
         /* eslint-disable no-unused-vars */
         Object.entries(testAnswerArray).forEach(([key, value]) => {
-          /* eslint-disable no-unused-vars */
           if (testValue === value) this.grade += 1;
         });
       });
@@ -197,7 +195,6 @@ export default {
 
     onReset(evt) {
       evt.preventDefault();
-      // Reset form values
       this.form.question_1 = '';
       this.form.question_2 = '';
       this.form.question_3 = '';
