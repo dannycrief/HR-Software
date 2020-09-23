@@ -144,29 +144,57 @@ export default {
       axios.get(`${BASE_API_URL}/demo_questions/`).then((response) => {
         this.questions = response.data;
       });
+      axios.get(`${BASE_API_URL}/demo_answers/`).then((response) => {
+        this.answers = response.data;
+      });
     },
 
     getQuestion(taskNumber) {
-      const currentQuestion = this.questions[this.randomArray[taskNumber - 1]].demo_question;
-      return `${taskNumber}) ${JSON.stringify(currentQuestion).replace(/['"]+/g, '')}`;
+      const currentQuestion = this.questions[this.randomArray[taskNumber - 1]];
+      return `${taskNumber}) ${JSON.stringify(currentQuestion.demo_question).replace(/['"]+/g, '')}`;
     },
 
     getRandomInt() {
       while (this.randomArray.length < 10) {
-        const randomNumber = Math.floor(Math.random() * 10);
+        const randomNumber = Math.floor(Math.random() * 11);
         if (this.randomArray.indexOf(randomNumber) === -1) this.randomArray.push(randomNumber);
       }
       return this.randomArray;
     },
 
+    checkAnswers() {
+      const generatedQuestion = [];
+      const testAnswerArray = {};
+
+      for (let i = 0; i < this.randomArray.length; i += 1) {
+        generatedQuestion.push(this.questions[this.randomArray[i]]);
+      }
+
+      for (let t = 0; t < generatedQuestion.length; t += 1) {
+        for (let a = 0; a < this.answers.length; a += 1) {
+          if (generatedQuestion[t].demo_answer_id === this.answers[a].id) {
+            testAnswerArray[generatedQuestion[t].demo_question] = this.answers[a].demo_answer;
+          }
+        }
+      }
+
+      /* eslint-disable no-unused-vars */
+      Object.entries(this.form).forEach(([testKey, testValue]) => {
+        /* eslint-disable no-unused-vars */
+        Object.entries(testAnswerArray).forEach(([key, value]) => {
+          if (testValue === value) this.grade += 1;
+        });
+      });
+      console.log(this.grade);
+    },
+
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      this.checkAnswers();
     },
 
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
       this.form.question_1 = '';
       this.form.question_2 = '';
       this.form.question_3 = '';
@@ -186,6 +214,7 @@ export default {
   data() {
     return {
       questions: {},
+      answers: {},
       form: {
         question_1: '',
         question_2: '',
@@ -199,6 +228,7 @@ export default {
         question_10: '',
       },
       randomArray: [],
+      grade: 0,
     };
   },
 };
