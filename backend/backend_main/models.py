@@ -37,18 +37,20 @@ class DemoTests(models.Model):
         return "{}".format(self.demo_question_id)
 
 
-class DemoQuestions(models.Model):
-    """Demo Questions model"""
-    demo_question = models.CharField('DemoQuestions', max_length=255)
-    demo_answer_id = models.ForeignKey('DemoAnswers', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{}".format(self.demo_question)
-
-
 class DemoAnswers(models.Model):
     """Demo Answer model"""
-    demo_answer = models.CharField('DemoAnswers', max_length=255)
+    demo_answer = models.CharField('DemoAnswers', max_length=255, unique=True)
 
     def __str__(self):
         return "{}".format(self.demo_answer)
+
+
+class DemoQuestions(models.Model):
+    """Demo Questions model"""
+    demo_question = models.CharField('DemoQuestions', max_length=255)
+    demo_answer = models.ForeignKey(DemoAnswers, to_field='demo_answer', db_column='DemoAnswers',
+                                    on_delete=models.CASCADE)
+    # demo_answer_id = models.ForeignKey('DemoAnswers', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}".format(self.demo_question)
