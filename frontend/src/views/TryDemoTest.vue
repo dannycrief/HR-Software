@@ -1,130 +1,157 @@
 <template>
   <div class="try-free">
-    <!--  Navigation starts  -->
-    <Navigation></Navigation>
-
+    <Navigation />
     <b-container>
       <b-row class="question-row">
-        <b-form @submit="onSubmit" @reset="onReset">
-          <b-form-group id="input-group"
-                        :label="getQuestion(1)"
-                        label-for="input-1">
+        <b-form
+          @submit="onSubmit"
+          @reset="onReset"
+        >
+          <b-form-group
+            id="input-group"
+            label-for="input-1"
+            :label="getQuestion(1)"
+          >
             <b-form-input
               id="input-1"
               v-model="form.question_1"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-2"
-                        :label="getQuestion(2)"
-                        label-for="input-2">
+          <b-form-group
+            id="input-group-2"
+            label-for="input-2"
+            :label="getQuestion(2)"
+          >
             <b-form-input
               id="input-2"
               v-model="form.question_2"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-3"
-                        :label="getQuestion(3)"
-                        label-for="input-3">
+          <b-form-group
+            id="input-group-3"
+            label-for="input-3"
+            :label="getQuestion(3)"
+          >
             <b-form-input
               id="input-3"
               v-model="form.question_3"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-4"
-                        :label="getQuestion(4)"
-                        label-for="input-4">
+          <b-form-group
+            id="input-group-4"
+            label-for="input-4"
+            :label="getQuestion(4)"
+          >
             <b-form-input
               id="input-4"
               v-model="form.question_4"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-5"
-                        :label="getQuestion(5)"
-                        label-for="input-5">
-            <!--
-            TODO: set v-model value on js side. Like question1, question2, etc
-            -->
+          <b-form-group
+            id="input-group-5"
+            label-for="input-5"
+            :label="getQuestion(5)"
+          >
             <b-form-input
               id="input-5"
               v-model="form.question_5"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-6"
-                        :label="getQuestion(6)"
-                        label-for="input-6">
+          <b-form-group
+            id="input-group-6"
+            label-for="input-6"
+            :label="getQuestion(6)"
+          >
             <b-form-input
               id="input-6"
               v-model="form.question_6"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-7"
-                        :label="getQuestion(7)"
-                        label-for="input-7">
+          <b-form-group
+            id="input-group-7"
+            label-for="input-7"
+            :label="getQuestion(7)"
+          >
             <b-form-input
               id="input-7"
               v-model="form.question_7"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-8"
-                        :label="getQuestion(8)"
-                        label-for="input-8">
+          <b-form-group
+            id="input-group-8"
+            label-for="input-8"
+            :label="getQuestion(8)"
+          >
             <b-form-input
               id="input-8"
               v-model="form.question_8"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-9"
-                        :label="getQuestion(9)"
-                        label-for="input-9">
+          <b-form-group
+            id="input-group-9"
+            label-for="input-9"
+            :label="getQuestion(9)"
+          >
             <b-form-input
               id="input-9"
               v-model="form.question_9"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-form-group id="input-group-10"
-                        :label="getQuestion(10)"
-                        label-for="input-10">
+          <b-form-group
+            id="input-group-10"
+            label-for="input-10"
+            :label="getQuestion(10)"
+          >
             <b-form-input
               id="input-10"
               v-model="form.question_10"
               required
-              placeholder="Your answer here">
-            </b-form-input>
+              placeholder="Your answer here"
+            />
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
+          <b-button
+            type="submit"
+            variant="primary"
+          >
+            Submit
+          </b-button>
+          <b-button
+            type="reset"
+            variant="danger"
+          >
+            Reset
+          </b-button>
         </b-form>
       </b-row>
     </b-container>
-
   </div>
 </template>
 
@@ -139,53 +166,109 @@ export default {
   components: {
     Navigation,
   },
+
+  data() {
+    return {
+      questions: {
+        0: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        1: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        2: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        3: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        4: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        5: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        6: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        7: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        8: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        9: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+        10: {
+          demo_question: '',
+          demo_answer_id: '',
+        },
+      },
+      form: {
+        question_1: '',
+        question_2: '',
+        question_3: '',
+        question_4: '',
+        question_5: '',
+        question_6: '',
+        question_7: '',
+        question_8: '',
+        question_9: '',
+        question_10: '',
+      },
+      grade: 0,
+    };
+  },
+  mounted() {
+    this.getAPI();
+  },
+
   methods: {
     getAPI() {
       axios.get(`${BASE_API_URL}/demo_questions/`).then((response) => {
-        this.questions = response.data;
+        this.questions = this.shuffle(response.data);
       });
+
       axios.get(`${BASE_API_URL}/demo_answers/`).then((response) => {
         this.answers = response.data;
       });
     },
 
-    getQuestion(taskNumber) {
-      const currentQuestion = this.questions[this.randomArray[taskNumber - 1]];
-      return `${taskNumber}) ${JSON.stringify(currentQuestion.demo_question).replace(/['"]+/g, '')}`;
+    getQuestion(number) {
+      return `${number}) ${JSON.stringify(this.questions[number - 1].demo_question).replace(/['"]+/g, '')}`;
     },
 
-    getRandomInt() {
-      while (this.randomArray.length < 10) {
-        const randomNumber = Math.floor(Math.random() * 11);
-        if (this.randomArray.indexOf(randomNumber) === -1) this.randomArray.push(randomNumber);
+    shuffle(sourceArray) {
+      for (let i = 0; i < sourceArray.length - 1; i++) {
+        const j = i + Math.floor(Math.random() * (sourceArray.length - i));
+
+        const temp = sourceArray[j];
+        sourceArray[j] = sourceArray[i];
+        sourceArray[i] = temp;
       }
-      return this.randomArray;
+      return sourceArray;
     },
 
     checkAnswers() {
-      const generatedQuestion = [];
-      const testAnswerArray = {};
-
-      for (let i = 0; i < this.randomArray.length; i += 1) {
-        generatedQuestion.push(this.questions[this.randomArray[i]]);
-      }
-
-      for (let t = 0; t < generatedQuestion.length; t += 1) {
-        for (let a = 0; a < this.answers.length; a += 1) {
-          if (generatedQuestion[t].demo_answer_id === this.answers[a].id) {
-            testAnswerArray[generatedQuestion[t].demo_question] = this.answers[a].demo_answer;
-          }
-        }
-      }
-
       /* eslint-disable no-unused-vars */
       Object.entries(this.form).forEach(([testKey, testValue]) => {
-        /* eslint-disable no-unused-vars */
-        Object.entries(testAnswerArray).forEach(([key, value]) => {
-          if (testValue === value) this.grade += 1;
-        });
+        for (let i = 0; i < this.questions.length; i++) {
+          if (testValue === this.questions[i].demo_answer_id) {
+            this.grade += 1;
+          }
+        }
       });
-      console.log(this.grade);
     },
 
     onSubmit(evt) {
@@ -207,30 +290,6 @@ export default {
       this.form.question_10 = '';
     },
   },
-  mounted() {
-    this.getAPI();
-    this.getRandomInt();
-  },
-  data() {
-    return {
-      questions: {},
-      answers: {},
-      form: {
-        question_1: '',
-        question_2: '',
-        question_3: '',
-        question_4: '',
-        question_5: '',
-        question_6: '',
-        question_7: '',
-        question_8: '',
-        question_9: '',
-        question_10: '',
-      },
-      randomArray: [],
-      grade: 0,
-    };
-  },
 };
 </script>
 
@@ -238,7 +297,6 @@ export default {
 .questions-block {
   height: calc(100vh - 72px);
 }
-
 .question-row {
   color: #377dff;
 
