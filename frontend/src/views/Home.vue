@@ -352,7 +352,7 @@
         <b-row>
           <b-col cols="12">
             <p style="text-align: center;color: #677788;">
-              © HRSowftware, since
+              © HRSoftware, since
               2020. All rights reserved.
             </p>
           </b-col>
