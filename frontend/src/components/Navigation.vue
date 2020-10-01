@@ -4,7 +4,6 @@
       toggleable="lg"
       type="light"
       variant="light"
-      print="true"
     >
       <b-navbar-brand
         variant="primary"

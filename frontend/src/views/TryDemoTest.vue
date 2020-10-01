@@ -15,7 +15,7 @@
             <b-form-input
               id="input-1"
               v-model="form.question_1"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -28,7 +28,7 @@
             <b-form-input
               id="input-2"
               v-model="form.question_2"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -41,7 +41,7 @@
             <b-form-input
               id="input-3"
               v-model="form.question_3"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -54,7 +54,7 @@
             <b-form-input
               id="input-4"
               v-model="form.question_4"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -67,7 +67,7 @@
             <b-form-input
               id="input-5"
               v-model="form.question_5"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -80,7 +80,7 @@
             <b-form-input
               id="input-6"
               v-model="form.question_6"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -93,7 +93,7 @@
             <b-form-input
               id="input-7"
               v-model="form.question_7"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -106,7 +106,7 @@
             <b-form-input
               id="input-8"
               v-model="form.question_8"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -119,7 +119,7 @@
             <b-form-input
               id="input-9"
               v-model="form.question_9"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -132,7 +132,7 @@
             <b-form-input
               id="input-10"
               v-model="form.question_10"
-              required
+              type="search"
               placeholder="Your answer here"
             />
           </b-form-group>
@@ -147,7 +147,7 @@
             type="reset"
             variant="danger"
           >
-            Reset
+            Reset All
           </b-button>
         </b-form>
       </b-row>
@@ -261,6 +261,7 @@ export default {
     },
 
     checkAnswers() {
+      this.grade = 0;
       /* eslint-disable no-unused-vars */
       Object.entries(this.form).forEach(([testKey, testValue]) => {
         for (let i = 0; i < this.questions.length; i++) {
@@ -297,6 +298,7 @@ export default {
 .questions-block {
   height: calc(100vh - 72px);
 }
+
 .question-row {
   color: #377dff;
 
