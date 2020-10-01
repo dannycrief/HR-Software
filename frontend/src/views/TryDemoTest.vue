@@ -265,7 +265,9 @@ export default {
       /* eslint-disable no-unused-vars */
       Object.entries(this.form).forEach(([testKey, testValue]) => {
         for (let i = 0; i < this.questions.length; i++) {
+          const currentElement = document.getElementById('input-' + `${i + 1}`);
           if (testValue === this.questions[i].demo_answer_id) {
+            currentElement.classList.add('active');
             this.grade += 1;
           }
         }
@@ -295,6 +297,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.active {
+  background-color: #98C379 !important;
+}
+
 .questions-block {
   height: calc(100vh - 72px);
 }
