@@ -5,6 +5,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import loader from 'vue-ui-preloader';
 
 import App from './App.vue';
 import router from './router';
@@ -12,6 +13,7 @@ import store from './store';
 import './icons';
 
 Vue.config.productionTip = false;
+Vue.use(loader);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 

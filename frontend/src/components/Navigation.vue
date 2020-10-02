@@ -55,7 +55,10 @@
                 Packages
               </b-badge>
             </b-dropdown-item-button>
-            <b-dropdown-item-button>
+            <b-button
+              class="dropdown-item"
+              to="try-demo"
+            >
               Take Demo Exams
               <b-badge
                 variant="danger"
@@ -63,7 +66,7 @@
               >
                 Try
               </b-badge>
-            </b-dropdown-item-button>
+            </b-button>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown
