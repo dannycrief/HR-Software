@@ -363,7 +363,7 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue';
+import Navigation from '../components/Navigation.vue';
 import rightLogo from '../assets/right-logo.jpg';
 
 export default {

@@ -12,8 +12,11 @@ const routes = [
   },
   {
     path: '/try-demo',
-    name: 'TryDemoTest',
-    component: () => import(/* webpackChunkName: "about" */ '../views/TryDemoTest.vue'),
+    name: 'TryDemoTest', component: () => import('../views/TryDemoTest.vue'),
+  },
+  {
+    path: '/try-demo/grade',
+    name: 'DemoTestGrade', component: () => import('../views/DemoTestGrade.vue'),
   },
 ];
 

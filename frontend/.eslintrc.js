@@ -11,5 +11,8 @@ module.exports = {
   plugins: [
     'vue'
   ],
-  rules: {}
+  rules: {
+    'vue/this-in-template': ["error", "never"],
+    'semi': "error",
+  }
 }
