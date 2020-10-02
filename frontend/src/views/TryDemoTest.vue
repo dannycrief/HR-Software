@@ -1,9 +1,27 @@
 <template>
   <div class="try-free">
+    <div v-if="loading">
+      <loader
+        object="#ff9633"
+        color1="#ffffff"
+        color2="#17fd3d"
+        size="5"
+        speed="2"
+        bg="#343a40"
+        objectbg="#999793"
+        opacity="80"
+        name="circular"
+      />
+    </div>
     <Navigation />
+    <p />
     <b-container>
       <b-row class="question-row">
+        <p v-if="errors!==''">
+          {{ errors }}
+        </p>
         <b-form
+          v-if="errors === '' "
           @submit="onSubmit"
           @reset="onReset"
         >
@@ -136,19 +154,31 @@
               placeholder="Your answer here"
             />
           </b-form-group>
-
-          <b-button
-            type="submit"
-            variant="primary"
+          <div
+            class="buttons"
           >
-            Submit
-          </b-button>
-          <b-button
-            type="reset"
-            variant="danger"
-          >
-            Reset All
-          </b-button>
+            <b-button
+              v-if="!isHidden"
+              type="reset"
+              variant="danger"
+            >
+              Reset All
+            </b-button>
+            <b-button
+              v-if="!isHidden"
+              variant="primary"
+              @click="checkAnswers()"
+            >
+              Submit Answer
+            </b-button>
+            <b-button
+              v-if="isHidden"
+              type="submit"
+              variant="primary"
+            >
+              Show Grade
+            </b-button>
+          </div>
         </b-form>
       </b-row>
     </b-container>
@@ -157,7 +187,7 @@
 
 <script>
 import axios from 'axios';
-import Navigation from '@/components/Navigation.vue';
+import Navigation from '../components/Navigation.vue';
 
 const BASE_API_URL = 'http://localhost:8080/hr-api';
 
@@ -228,20 +258,27 @@ export default {
         question_10: '',
       },
       grade: 0,
+      isHidden: false,
+      errors: '',
+      loading: false,
     };
   },
   mounted() {
     this.getAPI();
+    if (localStorage.getItem('demo-grade')) {
+      localStorage.removeItem('demo-grade');
+    }
   },
 
   methods: {
     getAPI() {
+      this.loading = true;
       axios.get(`${BASE_API_URL}/demo_questions/`).then((response) => {
         this.questions = this.shuffle(response.data);
-      });
-
-      axios.get(`${BASE_API_URL}/demo_answers/`).then((response) => {
-        this.answers = response.data;
+      }).catch((error => {
+        this.errors = error;
+      })).finally(() => {
+        this.loading = false;
       });
     },
 
@@ -261,7 +298,7 @@ export default {
     },
 
     checkAnswers() {
-      this.grade = 0;
+      this.isHidden = true;
       /* eslint-disable no-unused-vars */
       Object.entries(this.form).forEach(([testKey, testValue]) => {
         for (let i = 0; i < this.questions.length; i++) {
@@ -274,9 +311,14 @@ export default {
       });
     },
 
-    onSubmit(evt) {
+    onSubmit: function (evt) {
       evt.preventDefault();
-      this.checkAnswers();
+      // this.checkAnswers();
+      setTimeout(async () => {
+        await this.$router.push({path: '/try-demo/grade'});
+        localStorage.setItem('demo-grade', this.grade);
+        this.loading = true;
+      }, 2000);
     },
 
     onReset(evt) {
@@ -325,7 +367,19 @@ export default {
       padding: 1rem;
       margin: 1rem 0 !important;
     }
-  }
 
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+
+      button:first-child {
+        margin-right: 1rem;
+      }
+
+      button:last-child {
+        margin-left: 1rem;
+      }
+    }
+  }
 }
 </style>
