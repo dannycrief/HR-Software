@@ -57,7 +57,7 @@
             </b-dropdown-item-button>
             <b-button
               class="dropdown-item"
-              to="try-demo"
+              @click="redirectToTryDemo()"
             >
               Take Demo Exams
               <b-badge
@@ -121,6 +121,11 @@
 
 export default {
   name: 'Navigation',
+  methods: {
+    redirectToTryDemo() {
+      this.$router.push({path: '/try-demo'});
+    }
+  },
 };
 </script>
 
