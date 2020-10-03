@@ -14,12 +14,45 @@
       />
     </div>
     <Navigation />
-    <p />
     <b-container>
       <b-row class="question-row">
         <p v-if="errors!==''">
           {{ errors }}
         </p>
+        <div>
+          <b-modal
+            ref="modal-center"
+            hide-footer
+            title="Let us know your email"
+          >
+            <b-form
+              @submit="onSubmitEmail"
+            >
+              <b-form-group
+                id="input-group-1"
+                label="Email address:"
+                label-for="input-1"
+                description="We'll never share your email with anyone else."
+              >
+                <b-form-input
+                  id="input-1"
+                  v-model="demoUserEmail"
+                  type="email"
+                  required
+                  placeholder="Enter email"
+                />
+              </b-form-group>
+              <b-button
+                class="mt-3"
+                variant="outline-danger"
+                type="submit"
+                block
+              >
+                Submit
+              </b-button>
+            </b-form>
+          </b-modal>
+        </div>
         <b-form
           v-if="errors === '' "
           @submit="onSubmit"
@@ -158,14 +191,14 @@
             class="buttons"
           >
             <b-button
-              v-if="!isHidden"
+              v-if="!isHidden && isAPI"
               type="reset"
               variant="danger"
             >
               Reset All
             </b-button>
             <b-button
-              v-if="!isHidden"
+              v-if="!isHidden && isAPI"
               variant="primary"
               @click="checkAnswers()"
             >
@@ -199,6 +232,7 @@ export default {
 
   data() {
     return {
+      demoUserEmail: '',
       questions: {
         0: {
           demo_question: '',
@@ -257,14 +291,18 @@ export default {
         question_9: '',
         question_10: '',
       },
+      isAPI: false,
       grade: 0,
       isHidden: false,
       errors: '',
       loading: false,
+      previousRoute: null,
+      isModalWasShowed: false,
     };
   },
+
   mounted() {
-    this.getAPI();
+    if (!this.isModalWasShowed) this.showModal();
     if (localStorage.getItem('demo-grade')) {
       localStorage.removeItem('demo-grade');
     }
@@ -278,8 +316,13 @@ export default {
       }).catch((error => {
         this.errors = error;
       })).finally(() => {
+        this.isAPI = true;
         this.loading = false;
       });
+    },
+
+    showModal() {
+      this.$refs['modal-center'].show();
     },
 
     getQuestion(number) {
@@ -303,7 +346,7 @@ export default {
       Object.entries(this.form).forEach(([testKey, testValue]) => {
         for (let i = 0; i < this.questions.length; i++) {
           const currentElement = document.getElementById('input-' + `${i + 1}`);
-          if (testValue === this.questions[i].demo_answer_id) {
+          if (testValue === this.questions[i].demo_answer_id && testValue !== '') {
             currentElement.classList.add('active');
             this.grade += 1;
           }
@@ -313,12 +356,24 @@ export default {
 
     onSubmit: function (evt) {
       evt.preventDefault();
-      // this.checkAnswers();
+      this.loading = true;
       setTimeout(async () => {
         await this.$router.push({path: '/try-demo/grade'});
         localStorage.setItem('demo-grade', this.grade);
         this.loading = true;
       }, 2000);
+    },
+
+    onSubmitEmail: function (evt) {
+      evt.preventDefault();
+      this.isModalWasShowed = true;
+      this.$refs['modal-center'].hide();
+      this.getAPI();
+      setTimeout(async () => {
+        this.loading = true;
+        await this.checkAnswers();
+        await document.querySelector('.btn.btn-primary').click();
+      }, 10000);
     },
 
     onReset(evt) {
@@ -334,6 +389,11 @@ export default {
       this.form.question_9 = '';
       this.form.question_10 = '';
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.previousRoute = from;
+    });
   },
 };
 </script>
