@@ -1,56 +1,51 @@
+import uuid
+
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
-class Tests(models.Model):
-    """Main tests model"""
-    question_id = models.ForeignKey('Questions', on_delete=models.CASCADE)
-    answer_id = models.ForeignKey('Answers', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{}".format(self.question_id)
-
-
-class Questions(models.Model):
-    """Main Questions model"""
-    question = models.CharField('Question', max_length=255)
-    answer_id = models.ForeignKey('Answers', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{}".format(self.question)
-
-
-class Answers(models.Model):
+class Answer(models.Model):
     """Main Answer model"""
-    answer = models.CharField('Answer', max_length=255)
+    answer = models.CharField('Answer', max_length=255, unique=True)
 
     def __str__(self):
         return "{}".format(self.answer)
 
 
-# Demo Tests models
-class DemoTests(models.Model):
-    """Demo tests model"""
-    demo_question_id = models.ForeignKey('DemoQuestions', on_delete=models.CASCADE)
-    demo_answer_id = models.ForeignKey('DemoAnswers', on_delete=models.CASCADE)
+class Question(models.Model):
+    """Main Questions model"""
+    question = models.CharField('Question', max_length=255)
+    answer_id = models.ForeignKey(Answer, to_field='answer', db_column='Answer',
+                                  on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{}".format(self.demo_question_id)
+        return "{}".format(self.question)
 
 
-class DemoAnswers(models.Model):
+class DemoAnswer(models.Model):
     """Demo Answer model"""
-    demo_answer = models.CharField('DemoAnswers', max_length=255, unique=True)
+    demo_answer = models.CharField('DemoAnswer', max_length=255, unique=True)
 
     def __str__(self):
         return "{}".format(self.demo_answer)
 
 
-class DemoQuestions(models.Model):
+class DemoQuestion(models.Model):
     """Demo Questions model"""
     demo_question = models.CharField('DemoQuestions', max_length=255)
-    demo_answer = models.ForeignKey(DemoAnswers, to_field='demo_answer', db_column='DemoAnswers',
+    demo_answer = models.ForeignKey(DemoAnswer, to_field='demo_answer', db_column='DemoAnswer',
                                     on_delete=models.CASCADE)
-    # demo_answer_id = models.ForeignKey('DemoAnswers', on_delete=models.CASCADE)
 
     def __str__(self):
         return "{}".format(self.demo_question)
+
+
+class DemoUserTest(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    demoUserEmail = models.EmailField(_("Demo User Email"), blank=True, max_length=255)
+    dateOfStart = models.DateField(_("Day of Start Demo Test"))
+    timeStart = models.TimeField(_("Start Time of Demo Test"), auto_now=False, auto_now_add=True)
+    timeEnd = models.TimeField(_("End Time of Demo Test"), null=True)
+
+    def __str__(self):
+        return "{} - {}".format(self.demoUserEmail, self.dateOfStart)

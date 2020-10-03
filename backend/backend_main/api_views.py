@@ -1,23 +1,6 @@
 from rest_framework import routers, viewsets, serializers, permissions
 
-from .models import Questions, Answers, Tests, DemoTests, DemoAnswers, DemoQuestions
-
-
-# Tests Serializer
-class TestsSerializer(serializers.ModelSerializer):
-    """Registering Answer Serializer class"""
-
-    class Meta:
-        model = Tests
-        fields = ["id", "question_id", "answer_id"]
-
-
-class TestsViewSet(viewsets.ModelViewSet):
-    """Registering Answer ViewSet class"""
-    queryset = Tests.objects.all()
-    serializer_class = TestsSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
+from .models import Question, Answer, DemoAnswer, DemoQuestion, DemoUserTest
 
 
 # Question Serializer
@@ -25,13 +8,13 @@ class QuestionSerializer(serializers.ModelSerializer):
     """Registering Question Serializer class"""
 
     class Meta:
-        model = Questions
+        model = Question
         fields = ["id", "question", "answer_id"]
 
 
 class QuestionsViewSet(viewsets.ModelViewSet):
     """Registering Questions ViewSet class"""
-    queryset = Questions.objects.all()
+    queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
     # permission_classes = [permissions.IsAuthenticated]
@@ -42,31 +25,14 @@ class AnswersSerializer(serializers.ModelSerializer):
     """Registering Answer Serializer class"""
 
     class Meta:
-        model = Answers
+        model = Answer
         fields = ["id", "answer"]
 
 
 class AnswersViewSet(viewsets.ModelViewSet):
     """Registering Answer ViewSet class"""
-    queryset = Answers.objects.all()
+    queryset = Answer.objects.all()
     serializer_class = AnswersSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
-
-
-# Demo Tests Serializer
-class DemoTestsSerializer(serializers.ModelSerializer):
-    """Registering Demo Tests Serializer class"""
-
-    class Meta:
-        model = DemoTests
-        fields = ["id", "demo_question_id", "demo_answer_id"]
-
-
-class DemoTestsViewSet(viewsets.ModelViewSet):
-    """Registering Demo Tests ViewSet class"""
-    queryset = DemoTests.objects.all()
-    serializer_class = DemoTestsSerializer
 
     # permission_classes = [permissions.IsAuthenticated]
 
@@ -76,16 +42,14 @@ class DemoQuestionSerializer(serializers.ModelSerializer):
     """Registering Question Serializer class"""
 
     class Meta:
-        model = DemoQuestions
+        model = DemoQuestion
         fields = ["id", "demo_question", "demo_answer_id"]
 
 
 class DemoQuestionsViewSet(viewsets.ModelViewSet):
     """Registering Questions ViewSet class"""
-    queryset = DemoQuestions.objects.all()
+    queryset = DemoQuestion.objects.all()
     serializer_class = DemoQuestionSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
 
 
 # Demo Answers Serializer
@@ -93,27 +57,35 @@ class DemoAnswersSerializer(serializers.ModelSerializer):
     """Registering Demo Answer Serializer class"""
 
     class Meta:
-        model = DemoAnswers
+        model = DemoAnswer
         fields = ["id", "demo_answer"]
 
 
 class DemoAnswersViewSet(viewsets.ModelViewSet):
     """Registering Demo Answer ViewSet class"""
-    queryset = DemoAnswers.objects.all()
+    queryset = DemoAnswer.objects.all()
     serializer_class = DemoAnswersSerializer
 
-    # permission_classes = [permissions.IsAuthenticated]
+
+class DemoUserTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DemoUserTest
+        fields = ['id', 'demoUserEmail', 'dateOfStart', 'timeStart', 'timeEnd']
+
+
+class DemoUserTestViewSet(viewsets.ModelViewSet):
+    queryset = DemoUserTest.objects.all()
+    serializer_class = DemoUserTestSerializer
 
 
 def get_router_urls():
     """Getting routes from viewsets"""
     router = routers.DefaultRouter()
-    router.register('tests', TestsViewSet)
     router.register('questions', QuestionsViewSet)
     router.register('answers', AnswersViewSet)
 
-    router.register('demo_tests', DemoTestsViewSet)
     router.register('demo_questions', DemoQuestionsViewSet)
     router.register('demo_answers', DemoAnswersViewSet)
+    router.register('demo_user_test', DemoUserTestViewSet)
 
     return router.urls
