@@ -1,33 +1,28 @@
 from django.contrib import admin
 
-from .models import Tests, Questions, Answers, DemoTests, DemoQuestions, DemoAnswers
+from .models import Question, Answer, DemoQuestion, DemoAnswer, DemoUserTest
 
 
-@admin.register(Tests)
+@admin.register(Question)
 class AdminTest(admin.ModelAdmin):
     pass
 
 
-@admin.register(Questions)
+@admin.register(Answer)
 class AdminTest(admin.ModelAdmin):
     pass
 
 
-@admin.register(Answers)
+@admin.register(DemoQuestion)
 class AdminTest(admin.ModelAdmin):
     pass
 
 
-@admin.register(DemoTests)
+@admin.register(DemoAnswer)
 class AdminTest(admin.ModelAdmin):
     pass
 
 
-@admin.register(DemoQuestions)
-class AdminTest(admin.ModelAdmin):
-    pass
-
-
-@admin.register(DemoAnswers)
-class AdminTest(admin.ModelAdmin):
+@admin.register(DemoUserTest)
+class AdminDemoUserTest(admin.ModelAdmin):
     pass
