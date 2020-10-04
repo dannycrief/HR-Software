@@ -44,8 +44,9 @@ class DemoUserTest(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     demoUserEmail = models.EmailField(_("Demo User Email"), blank=True, max_length=255)
     dateOfStart = models.DateField(_("Day of Start Demo Test"), auto_now=False, auto_now_add=True)
-    timeStart = models.TimeField(_("Start Time of Demo Test"), auto_now=False, auto_now_add=True, null=False)
-    timeEnd = models.TimeField(_("End Time of Demo Test"), null=True)
+    timeStart = models.TimeField(_("Start Time of Demo Test"), auto_now=False, auto_now_add=True)
+    timeEnd = models.TimeField(_("End Time of Demo Test"), auto_now=True, auto_now_add=False)
+    demoGrade = models.CharField(_("Demo Grade"), null=True, max_length=5)
 
     def __str__(self):
         return "{} - {}".format(self.demoUserEmail, self.dateOfStart)

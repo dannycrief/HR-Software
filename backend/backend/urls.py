@@ -5,5 +5,6 @@ from backend_main.api_views import get_router_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hr-api/', include(get_router_urls()))
+    path('hr-api/', include(get_router_urls())),
+    path('demo-hr-api/', include('backend_main.urls'))
 ]
