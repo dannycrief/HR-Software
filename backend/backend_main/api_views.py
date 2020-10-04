@@ -70,7 +70,7 @@ class DemoAnswersViewSet(viewsets.ModelViewSet):
 class DemoUserTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = DemoUserTest
-        fields = ['id', 'demoUserEmail', 'dateOfStart', 'timeStart', 'timeEnd']
+        fields = ['id', 'demoUserEmail', 'dateOfStart', 'timeStart', 'timeEnd', 'demoGrade']
 
 
 class DemoUserTestViewSet(viewsets.ModelViewSet):
