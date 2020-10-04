@@ -223,6 +223,7 @@ import axios from 'axios';
 import Navigation from '../components/Navigation.vue';
 
 const BASE_API_URL = 'http://localhost:8080/hr-api';
+const MAIN_SERVER_API_URL = 'http://localhost:8080';
 
 export default {
   name: 'TryForFree',
@@ -298,6 +299,7 @@ export default {
       loading: false,
       previousRoute: null,
       isModalWasShowed: false,
+      currentTestUUID: null,
     };
   },
 
@@ -340,40 +342,83 @@ export default {
       return sourceArray;
     },
 
-    checkAnswers() {
+    async checkAnswers() {
       this.isHidden = true;
       /* eslint-disable no-unused-vars */
-      Object.entries(this.form).forEach(([testKey, testValue]) => {
+      await Object.entries(this.form).forEach(([testKey, testValue]) => {
         for (let i = 0; i < this.questions.length; i++) {
           const currentElement = document.getElementById('input-' + `${i + 1}`);
           if (testValue === this.questions[i].demo_answer_id && testValue !== '') {
-            currentElement.classList.add('active');
             this.grade += 1;
+            currentElement.classList.add('active');
           }
         }
       });
     },
 
-    onSubmit: function (evt) {
+    onSubmit: async function (evt) {
       evt.preventDefault();
       this.loading = true;
-      setTimeout(async () => {
-        await this.$router.push({path: '/try-demo/grade'});
-        localStorage.setItem('demo-grade', this.grade);
+
+      const requestData = {
+        id: this.currentTestUUID,
+        demoUserEmail: this.demoUserEmail,
+        demoGrade: this.grade,
+      };
+      const csrf = await this.$cookies.get('csrftoken');
+
+      const config = {
+        headers: {
+          'X-CSRFToken': csrf,
+        },
+      };
+
+      await axios.post(`${MAIN_SERVER_API_URL}/demo-hr-api/demo-test/`, requestData, config).catch((error) => {
+        this.errors = error + '. You see this error because there is a problem with server.' +
+          ' Please contact with us to solve this problem.';
+      }).finally(() => {
+        this.loading = false;
+      });
+
+      await setTimeout(async () => {
         this.loading = true;
+        await this.$router.push({path: '/try-demo/grade'});
+        await localStorage.setItem('demo-grade', this.grade);
       }, 2000);
     },
 
-    onSubmitEmail: function (evt) {
+    onSubmitEmail: async function (evt) {
       evt.preventDefault();
       this.isModalWasShowed = true;
-      this.$refs['modal-center'].hide();
-      this.getAPI();
-      setTimeout(async () => {
+      this.loading = true;
+
+      const requestData = {
+        demoUserEmail: this.demoUserEmail,
+      };
+      const csrf = this.$cookies.get('csrftoken');
+
+      const config = {
+        headers: {
+          'X-CSRFToken': csrf,
+        }
+      };
+
+      await axios.post(`${BASE_API_URL}/demo_user_test/`, requestData, config).then((response) => {
+        this.currentTestUUID = response.data.id;
+      }).catch((error => {
+        this.errors = error + '. You see this error because there is a problem with server.' +
+          ' Please contact with us to solve this problem.';
+      })).finally(() => {
+        this.loading = false;
+      });
+
+      await this.$refs['modal-center'].hide();
+      await this.getAPI();
+      await setTimeout(async () => {
         this.loading = true;
         await this.checkAnswers();
         await document.querySelector('.btn.btn-primary').click();
-      }, 10000);
+      }, 600000);
     },
 
     onReset(evt) {
@@ -390,6 +435,7 @@ export default {
       this.form.question_10 = '';
     },
   },
+
   beforeRouteEnter(to, from, next) {
     next(vm => {
       vm.previousRoute = from;
