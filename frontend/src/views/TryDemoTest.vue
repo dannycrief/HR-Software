@@ -208,6 +208,8 @@
               v-if="isHidden"
               type="submit"
               variant="primary"
+              tag="button"
+              class="btn btn-primary"
             >
               Show Grade
             </b-button>
@@ -354,9 +356,10 @@ export default {
           }
         }
       });
+      localStorage.setItem('demo-grade', this.grade);
     },
 
-    onSubmit: async function (evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
       this.loading = true;
 
@@ -365,7 +368,7 @@ export default {
         demoUserEmail: this.demoUserEmail,
         demoGrade: this.grade,
       };
-      const csrf = await this.$cookies.get('csrftoken');
+      const csrf = this.$cookies.get('csrftoken');
 
       const config = {
         headers: {
@@ -380,11 +383,10 @@ export default {
         this.loading = false;
       });
 
-      await setTimeout(async () => {
+      await setTimeout(() => {
         this.loading = true;
-        await this.$router.push({path: '/try-demo/grade'});
-        await localStorage.setItem('demo-grade', this.grade);
-      }, 2000);
+        this.$router.push({path: '/try-demo/grade'});
+      }, 0);
     },
 
     onSubmitEmail: async function (evt) {

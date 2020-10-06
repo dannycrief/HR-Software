@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <!--  Navigation starts  -->
     <Navigation />
-    <!--  Main content starts  -->
     <div class="main-content">
       <b-container class="bv-container-row">
         <b-row class="bv-row">
@@ -23,14 +21,15 @@
               </p>
             </div>
             <div class="left-footer">
-              <b-button
+              <router-link
                 size="lg"
                 variant="primary"
-                class="try-free-button"
-                to="try-demo"
+                class="btn try-free-button btn-primary btn-lg"
+                to="/try-demo"
+                tag="button"
               >
-                Try for free
-              </b-button>
+                Try For Free
+              </router-link>
               <b-button
                 variant="link"
                 class="link-button"
