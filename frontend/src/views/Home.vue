@@ -363,7 +363,7 @@
 
 <script>
 import Navigation from '../components/Navigation.vue';
-import rightLogo from '../assets/right-logo.jpg';
+import rightLogo from '../assets/images/right-logo.jpg';
 
 export default {
   name: 'Home',
@@ -542,12 +542,6 @@ export default {
           height: calc(100% - 3rem);
           border-left: 0.125rem solid #e7eaf3;
           content: "";
-          //position: absolute;
-          //top: 3.59375rem;
-          //left: 1.5625rem;
-          //height: calc(100% - 2.65625rem);
-          //border-left: 0.125rem solid #e7eaf3;
-          //content: "";
         }
 
         @media (min-width: 768px) {
