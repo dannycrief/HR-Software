@@ -15,4 +15,4 @@ module.exports = {
     'vue/this-in-template': ["error", "never"],
     'semi': "error",
   }
-}
+};
