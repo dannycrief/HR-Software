@@ -4,60 +4,29 @@
       class="registration-form"
       @submit="onSubmit"
     >
-      <b-form-group
-        id="name-input-group"
+      <mdb-input
+        v-model="form.name"
         label="Name"
-        label-for="name"
-      >
-        <b-form-input
-          id="name"
-          v-model="form.name"
-          required
-          placeholder="Enter name"
-        />
-      </b-form-group>
+      />
 
-      <b-form-group
-        id="surname-input-group"
+      <mdb-input
+        v-model="form.surname"
         label="Surname"
-        label-for="surname"
-      >
-        <b-form-input
-          id="surname"
-          v-model="form.surname"
-          required
-          placeholder="Enter surname"
-        />
-      </b-form-group>
+      />
 
-      <b-form-group
-        id="email-input-group"
+      <mdb-input
+        v-model="form.email"
         label="Email"
-        label-for="email"
-      >
-        <b-form-input
-          id="email"
-          v-model="form.email"
-          type="email"
-          required
-          placeholder="Enter email"
-        />
-      </b-form-group>
+        type="email"
+      />
 
-      <b-form-group
-        id="password-input-group"
+      <mdb-input
+        v-model="form.password"
         label="Password"
-        label-for="password"
-      >
-        <b-form-input
-          id="password"
-          v-model="form.password"
-          type="password"
-          required
-          placeholder="Enter password"
-          @input="showCheckPasswordBlock"
-        />
-      </b-form-group>
+        type="password"
+        @input="showCheckPasswordBlock"
+      />
+
       <transition name="fade">
         <CheckPassword v-if="showCheckPassword" />
       </transition>
@@ -73,11 +42,13 @@
 </template>
 
 <script>
+import {mdbInput} from 'mdbvue';
 import CheckPassword from "./CheckPassword";
 
 export default {
   name: 'RegistrationForm',
   components: {
+    mdbInput,
     CheckPassword,
   },
   data() {
@@ -100,19 +71,36 @@ export default {
       alert(JSON.stringify(this.form));
     },
 
-    showCheckPasswordBlock: function () {
+    showCheckPasswordBlock() {
       const password = this.form.password;
-      this.characters.push(password.length);
+      const characters = this.characters;
+      let number = 0, bigLetter = 0, smallLetter = 0;
+
+      characters.push(password.length);
       this.showCheckPassword = password !== '';
-      // TODO: Make something like this on deleting. When characters.length - 1 < characters.length - 2
       setTimeout(() => {
-        if (password.slice(-1) !== ' ' && this.characters[this.characters.length - 1] > this.characters[this.characters.length - 2]) {
-          /\d/.test(password.slice(-1))
-            ? this.changeColorOnType('#one-number', '#007bff')
-            : /^[A-Z]/.test(password.slice(-1)) && this.changeColorOnType('#big-letter', '#007bff')
-            || /^[a-z]/.test(password.slice(-1)) && this.changeColorOnType('#small-letter', '#007bff');
+        characters[0] = password === '';
+        if (password.slice(-1) !== ' ') {
+          if (characters[characters.length - 1] > characters[characters.length - 2]) {
+            // TODO: make it better by searching in all password, not only at last symbol
+            /\d/.test(password.slice(-1))
+              ? this.changeColorOnType('#one-number', '#007bff')
+              : /^[A-Z]/.test(password.slice(-1)) && this.changeColorOnType('#big-letter', '#007bff')
+              || /^[a-z]/.test(password.slice(-1)) && this.changeColorOnType('#small-letter', '#007bff');
+          } else {
+            for (let char of password) {
+              if (/\d/.test(char)) number += 1;
+              if (/^[A-Z]/.test(char)) bigLetter += 1;
+              if (/^[a-z]/.test(char)) smallLetter += 1;
+            }
+            number === 0 && this.resetAttributes('#one-number', 'style');
+            bigLetter === 0 && this.resetAttributes('#big-letter', 'style');
+            smallLetter === 0 && this.resetAttributes('#small-letter', 'style');
+          }
         }
         password.length === 8 && this.changeColorOnType('#eight-symbols', '#007bff');
+
+        password.length < 8 && this.resetAttributes('#eight-symbols', 'style');
       }, 0);
 
     },
@@ -120,6 +108,13 @@ export default {
       document.querySelector(`${element}`).style.backgroundColor = `${color}`;
       document.querySelector(`${element}+div`).style.textDecoration = 'line-through';
       document.querySelector(`${element}+div`).style.color = 'grey';
+    },
+
+    resetAttributes(element, attribute) {
+      if (document.querySelector(`${element}`).hasAttribute(attribute)) {
+        document.querySelector(`${element}`).removeAttribute(attribute);
+        document.querySelector(`${element}+div`).removeAttribute(attribute);
+      }
     },
   }
 };

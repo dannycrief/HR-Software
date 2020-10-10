@@ -35,6 +35,7 @@
                 Already have an account?
                 <router-link
                   to="/login"
+                  class="login-button"
                 >
                   Log in
                 </router-link>
