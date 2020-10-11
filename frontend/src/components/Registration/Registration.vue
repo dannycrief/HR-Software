@@ -44,6 +44,13 @@
             <GoogleAuth />
             <FacebookAuth />
           </div>
+          <div class="divider">
+            <div class="divider__line" />
+            <div class="divider__text">
+              or
+            </div>
+            <div class="divider__line" />
+          </div>
           <RegistrationForm />
         </div>
       </div>
@@ -55,7 +62,7 @@
 import RegistrationForm from "./RegistrationForm";
 import GoogleAuth from "./auth/GoogleAuth";
 import FacebookAuth from "./auth/FacebookAuth";
-import rightLogo from '../../assets/images/right-logo.jpg';
+import rightLogo from '../../assets/images/right-logo.png';
 import '../../assets/styles/registration.scss';
 
 

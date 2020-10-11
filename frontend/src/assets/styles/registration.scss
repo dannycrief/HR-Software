@@ -4,13 +4,13 @@
   }
 
   .registration-app {
-    padding-top: 10%;
+    padding-top: 5%;
   }
 }
 
 @media (max-width: 993px) {
   .registration-app {
-    //padding-top: 6rem;
+    padding-top: 5%;
   }
 }
 
@@ -50,7 +50,6 @@
 
   .right-side {
     width: 100%;
-    padding-top: 30px;
 
     .registration-app {
       margin: 0 auto;
@@ -207,7 +206,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
+            margin: 0 0 1rem 0;
             height: 2.3rem;
             width: 100%;
             border-radius: 2rem;
