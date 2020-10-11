@@ -2,6 +2,22 @@
   .d-lg-block {
     display: flex !important;
   }
+
+  .registration-app {
+    padding-top: 10%;
+  }
+}
+
+@media (max-width: 993px) {
+  .registration-app {
+    //padding-top: 6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .registration-app {
+    width: 90%;
+  }
 }
 
 .main-content {
@@ -19,6 +35,7 @@
     justify-content: center;
     max-width: 36%;
     padding: 0 3rem;
+    background-color: rgba(184, 224, 246, 0.4);
 
     img {
       max-width: 100%;
@@ -33,17 +50,23 @@
 
   .right-side {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-top: 30px;
 
     .registration-app {
+      margin: 0 auto;
+
+      flex-direction: column;
+      box-sizing: border-box;
+      display: flex;
+      place-content: stretch flex-start;
+      align-items: stretch;
       max-width: 400px;
-      margin: 0 1rem;
 
       .home-button-logo {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .register-menu {
@@ -80,6 +103,7 @@
           .auth-button {
             width: 100%;
             padding: 10px 30px;
+            text-align: center;
 
             img {
               max-width: 1.7rem;
@@ -110,15 +134,73 @@
         }
       }
 
+      .divider {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .divider__line {
+          height: 1px;
+          border-bottom: 1px solid rgba(0, 0, 0, .54);
+          width: 100%;
+        }
+
+        .divider__text {
+          color: rgba(0, 0, 0, .54);
+          padding: 0 1rem;
+        }
+      }
+
       div {
         .registration-form {
           display: flex;
           flex-direction: column;
           border-radius: 2rem;
 
+          .md-form.md-outline label.active {
+            transform: translateY(-8px) scale(0.8);
+          }
+
           .md-form {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+            margin-top: .4rem;
+            margin-bottom: .4rem;
+
+            label.active.mr-5 {
+              font-weight: 200;
+              font-size: .7rem;
+              color: black;
+            }
+
+            input.form-control {
+              height: 3rem;
+            }
+
+            input:focus {
+              border-color: black;
+              box-shadow: inset 0 0 0 1px black;
+            }
+
+            label.mr-5 {
+              transform: translateY(15px);
+              font-size: .8rem;
+            }
+          }
+
+          .form-group .form-check {
+            input {
+              margin-left: 0;
+              position: relative;
+            }
+
+            label {
+              position: absolute;
+              margin-left: 2rem;
+            }
+
+            div {
+              margin-left: 0;
+            }
           }
 
           .btn.btn-primary {
@@ -139,10 +221,7 @@
           }
 
           .fade-enter,
-          .fade-leave-to
-            /* .fade-leave-active in <2.1.8 */
-
-          {
+          .fade-leave-to {
             opacity: 0
           }
 
@@ -151,7 +230,10 @@
             flex-direction: row;
             justify-content: space-between;
 
-            .big-letter, .small-letter, .one-number-min, .eight-symbols-min {
+            .big-letter,
+            .small-letter,
+            .one-number-min,
+            .eight-symbols-min {
               display: flex;
               justify-content: flex-start;
               align-items: center;
