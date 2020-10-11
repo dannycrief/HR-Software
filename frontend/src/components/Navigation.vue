@@ -128,6 +128,7 @@
 </template>
 
 <script>
+import '../assets/styles/navbar.scss';
 
 export default {
   name: 'Navigation',
@@ -138,24 +139,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.navbar-brand {
-  font-size: 1.8rem;
-  color: #377DFF !important;
-}
-
-.buttons-auth {
-  display: flex;
-  .login-btn {
-    padding: 0.4rem;
-    display: flex;
-    justify-self: center;
-    align-self: center;
-  }
-
-  .login-btn:first-child {
-    margin-right: 1rem;
-  }
-}
-</style>
