@@ -221,8 +221,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Navigation from '../components/Navigation.vue';
+import '../assets/styles/trydemotest.scss';
+import axios from 'axios';
 
 const BASE_API_URL = 'http://localhost:8080/hr-api';
 const MAIN_SERVER_API_URL = 'http://localhost:8080';
@@ -446,48 +447,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.active {
-  background-color: #98C379 !important;
-}
-
-.questions-block {
-  height: calc(100vh - 72px);
-}
-
-.question-row {
-  color: #377dff;
-
-  min-width: calc(100% - 5rem);
-  font-size: 1rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  form {
-    width: 100%;
-    margin: 0.5rem 1rem;
-
-    .form-group {
-      background-color: rgba(55, 125, 255, 0.1);
-      border-radius: 1rem;
-      padding: 1rem;
-      margin: 1rem 0 !important;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: flex-end;
-
-      button:first-child {
-        margin-right: 1rem;
-      }
-
-      button:last-child {
-        margin-left: 1rem;
-      }
-    }
-  }
-}
-</style>

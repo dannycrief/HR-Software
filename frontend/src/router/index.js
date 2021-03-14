@@ -12,11 +12,23 @@ const routes = [
   },
   {
     path: '/try-demo',
-    name: 'TryDemoTest', component: () => import('../views/TryDemoTest.vue'),
+    name: 'TryDemoTest',
+    component: () => import('../views/TryDemoTest.vue'),
   },
   {
     path: '/try-demo/grade',
-    name: 'DemoTestGrade', component: () => import('../views/DemoTestGrade.vue'),
+    name: 'DemoTestGrade',
+    component: () => import('../views/DemoTestGrade.vue'),
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../components/Login.vue')
+  },
+  {
+    path: '/registration',
+    name: 'Registration',
+    component: () => import('../components/Registration/Registration.vue')
   },
 ];
 

@@ -1,0 +1,274 @@
+@media (min-width: 992px) {
+  .d-lg-block {
+    display: flex !important;
+  }
+
+  .registration-app {
+    padding-top: 5%;
+  }
+}
+
+@media (max-width: 993px) {
+  .registration-app {
+    padding-top: 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .registration-app {
+    width: 90%;
+  }
+}
+
+.main-content {
+  display: flex !important;
+  flex-direction: row;
+  height: 100vh;
+
+  .top-content {
+    font-size: 2.7rem;
+    line-height: 2.4rem;
+  }
+
+  .left-side {
+    flex-direction: column;
+    justify-content: center;
+    max-width: 36%;
+    padding: 0 3rem;
+    background-color: rgba(184, 224, 246, 0.4);
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .bottom-content {
+      font-size: .95rem;
+      width: 16rem;
+    }
+  }
+
+  .right-side {
+    width: 100%;
+
+    .registration-app {
+      margin: 0 auto;
+
+      flex-direction: column;
+      box-sizing: border-box;
+      display: flex;
+      place-content: stretch flex-start;
+      align-items: stretch;
+      max-width: 400px;
+
+      .home-button-logo {
+        font-size: 2.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .register-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .login-link {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin: 1rem 0;
+          font-size: 14px;
+
+          .login {
+            color: rgba(0, 0, 0, .54);
+
+            .login-button {
+              text-decoration: underline;
+              color: inherit;
+            }
+          }
+        }
+
+        .google-auth, .facebook-auth {
+          display: flex;
+          position: relative;
+          width: 100%;
+          margin-bottom: 1rem;
+
+          .auth-button {
+            width: 100%;
+            padding: 10px 30px;
+            text-align: center;
+
+            img {
+              max-width: 1.7rem;
+            }
+
+            svg {
+              margin-right: 10px;
+              font-size: 1.7rem;
+            }
+          }
+
+          .google-button {
+            color: black;
+            border: 1px solid rgba(0, 0, 0, .12);
+            border-radius: 5px;
+          }
+
+          .facebook-button {
+            color: white;
+            background-color: #2373EF;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, .12);
+          }
+
+          .auth-button:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .divider {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .divider__line {
+          height: 1px;
+          border-bottom: 1px solid rgba(0, 0, 0, .54);
+          width: 100%;
+        }
+
+        .divider__text {
+          color: rgba(0, 0, 0, .54);
+          padding: 0 1rem;
+        }
+      }
+
+      div {
+        .registration-form {
+          display: flex;
+          flex-direction: column;
+          border-radius: 2rem;
+
+          .md-form.md-outline label.active {
+            transform: translateY(-8px) scale(0.8);
+          }
+
+          .md-form {
+            margin-top: .4rem;
+            margin-bottom: .4rem;
+
+            label.active.mr-5 {
+              font-weight: 200;
+              font-size: .7rem;
+              color: black;
+            }
+
+            input.form-control {
+              height: 3rem;
+            }
+
+            input:focus {
+              border-color: black;
+              box-shadow: inset 0 0 0 1px black;
+            }
+
+            label.mr-5 {
+              transform: translateY(15px);
+              font-size: .8rem;
+            }
+          }
+
+          .form-group .form-check {
+            input {
+              margin-left: 0;
+              position: relative;
+            }
+
+            label {
+              position: absolute;
+              margin-left: 2rem;
+            }
+
+            div {
+              margin-left: 0;
+            }
+          }
+
+          .btn.btn-primary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 0 1rem 0;
+            height: 2.3rem;
+            width: 100%;
+            border-radius: 2rem;
+            letter-spacing: 2px;
+            font-size: .92rem;
+          }
+
+          .fade-enter-active,
+          .fade-leave-active {
+            transition: opacity .85s
+          }
+
+          .fade-enter,
+          .fade-leave-to {
+            opacity: 0
+          }
+
+          .check-password-block {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .big-letter,
+            .small-letter,
+            .one-number-min,
+            .eight-symbols-min {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              margin: 3px 0;
+
+              svg {
+                background-color: #757575;
+                width: 1rem;
+                height: 1rem;
+                border-radius: 1rem;
+                padding: 3px;
+                color: white;
+                margin-right: 5px;
+              }
+
+              .check-text {
+                font-size: 12px;
+                color: rgba(0, 0, 0, .87);
+              }
+            }
+
+            .icon-check {
+              margin: 5px 0;
+              background-color: #0056b3;
+              color: white;
+              text-align: center;
+              border-radius: 4rem;
+              width: 1.3rem;
+              height: 1.3rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

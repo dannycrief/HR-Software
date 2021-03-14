@@ -20,7 +20,6 @@
         id="nav-collapse"
         is-nav
       >
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown
             id="dropdown-text"
@@ -104,13 +103,24 @@
               </b-badge>
             </b-dropdown-item-button>
           </b-nav-item-dropdown>
-
-          <b-button
-            class="login-btn"
-            variant="outline-primary"
-          >
-            Log In
-          </b-button>
+          <div class="buttons-auth">
+            <router-link
+              class="btn login-btn btn-outline-primary"
+              variant="outline-primary"
+              to="/login"
+              tag="a"
+            >
+              Log In
+            </router-link>
+            <router-link
+              class="btn login-btn btn-outline-primary"
+              variant="outline-primary"
+              to="/registration"
+              tag="a"
+            >
+              Sign up
+            </router-link>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -118,6 +128,7 @@
 </template>
 
 <script>
+import '../assets/styles/navbar.scss';
 
 export default {
   name: 'Navigation',
@@ -128,17 +139,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.navbar-brand {
-  font-size: 1.8rem;
-  color: #377DFF !important;
-}
-
-.login-btn {
-  padding: 0.4rem;
-  display: flex;
-  justify-self: center;
-  align-self: center;
-}
-</style>
